@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
+    </script>
+
+
+</head>
+
+<body>
+    <div class="d-flex justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <form class="text-center border border-light p-5" action="#!">
+
+                <h4 class="modal-title w-100 font-weight-bold">Details</h4>
+
+                <div class="md-form mb-4">
+                    <input type="text" id="name" class="form-control" name="name" value="{{ data["insured"] }}">
+                    <label for="name">Insured</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <input type="date" id="dob" class="form-control" name="dob"  value="{{ data["dob"] }}">
+                    <label for="dob">Date of
+                        Birth</label>
+                </div>
+
+
+                <div class="md-form mb-4">
+                    <input type="text" id="gender" class="form-control" name="gender"  value="{{ data["gender"] }}">
+                    <label for="gender">Gender</label>
+                </div>
+
+
+                <div class="md-form mb-4">
+                    <input type="text" id="memid" class="form-control" name="memid"  value={{ data["memberid"] }}>
+                    <label for="memid">Member
+                        ID</label>
+                </div>
+
+
+                <div class="md-form mb-4">
+                    <input type="text" id="servpd" class="form-control" name="servpd"  value={{ data["service_provider"] }}>
+                    <label for="servpd">Service
+                        Provider</label>
+                </div>
+
+
+                <div class="md-form mb-4">
+                    <input type="text" id="status" class="form-control" name="status"  value={{ data["status"] }}>
+                    <label for="status">Status</label>
+                </div>
+
+
+                <div class="md-form mb-4">
+                    <input type="text" id="sied" class="form-control" name="sied"  value={{ data["status_date"] }}>
+                    <label for="sied">Status
+                        Information Effective Date</label>
+                </div>
+
+
+                <div class="md-form mb-4">
+                    <input type="text" id="orangeForm-totclamt" class="form-control" name="totclamt"  value={{ data["claim_amount"] }}>
+                    <label for="orangeForm-totclamt">Total Claim
+                        Charge Amount</label>
+                </div>
+
+
+                <div class="md-form mb-4">
+                    <input type="text" id="orangeForm-clpayamt" class="form-control" name="clpayamt" value={{ data["claim_payment"] }}>
+                    <label for="orangeForm-clpayamt">Claim
+                        Payment Amount</label>
+                </div>
+
+                <button class="btn btn-primary">Print</button>
+                <button class="btn btn-primary">E-Mail</button>
+
+
+
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

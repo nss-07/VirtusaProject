@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InPatient</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
+    </script>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form class="text-center border border-light p-5" action="/submit-inpatient" method="POST">
+
+                <p class="h4 mb-4">InPatient Details</p>
+
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <input type="text" id="fname" name='p_fname' class="form-control" placeholder="First name">
+                    </div>
+
+                    <div class="col">
+                        <input type="text" id="lname" name="p_lname" class="form-control" placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <input type="text" id="age" name="age" class="form-control" placeholder="Age">
+                    </div>
+                </div>
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <input type="text" id="policyno" name="policy_number" class="form-control" placeholder="Policy Number">
+                    </div>
+
+                    <div class="col">
+                        <select class="browser-default custom-select mb-4" name="insured_sex">
+                            <option value="" disabled>Gender</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row mb-4">
+                    <small>Relation</small>
+                    <select class="browser-default custom-select mb-4" name="insured_relationship">
+                        <option value="husband">Husband</option>
+                        <option value="own-child">Own Child</option>
+                        <option value="unmarried">Unmarrried</option>
+                        <option value="not-in-family">Not In Family</option>
+                        <option value="wife">Wife</option>
+                        <option value="other-relative">Other Relative</option>
+                    </select>
+                </div>
+
+                <div class="form-row mb-4">
+{#                    <div class="col">#}
+{#                        <small>Hospitalized Date</small>#}
+{#                        <select class="browser-default custom-select mb-4" name="hospitalized_time">#}
+{#                            <option value="" disabled>Hospitalized Date</option>#}
+{#                            <option value="automatic">Automatic</option>#}
+{#                            <option value="current">Current Date</option>#}
+{#                        </select>#}
+{#                    </div>#}
+
+                    <div class="col">
+                        <small>Type of Admission</small>
+                        <select class="browser-default custom-select mb-4" name="type_of_admission">
+                            <option value="" disabled>Type of Admission</option>
+                            <option value="AD1">AD1</option>
+                            <option value="AD3">AD3</option>
+                            <option value="AD6">AD6</option>
+                            <option value="AD8">AD8</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <small>Type Of Visit</small>
+                        <select class="browser-default custom-select mb-4" name="type_of_visit">
+                            <option value="V55">V55</option>
+                            <option value="V67">V67</option>
+                            <option value="V73">V73</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <small>Incident Severity</small>
+                        <select class="browser-default custom-select mb-4" name="incident_severity">
+                            <option value="" disabled>Type of Admission</option>
+                            <option value="1">1</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <small>Source of Admission</small>
+                        <select class="browser-default custom-select mb-4" name="source_of_admission">
+                            <option value="None">None</option>
+                            <option value="Self">Self</option>
+                            <option value="Neighbor">Neighbor</option>
+                            <option value="Family">Family</option>
+                            <option value="Ambulance">Ambulance</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <small>Status when brought In</small>
+                            <select class="browser-default custom-select mb-4" name="status_when_brought_in">
+                            <option value="" disabled>Type of Admission</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row mb-4">
+                    <small>Reason</small>
+                    <select class="browser-default custom-select mb-4" name="reason">
+                        <option value="GORD">GORD</option>
+                        <option value="Appendectomy">Appendectomy</option>
+                        <option value="Hemorrhoidectomy">Hemorrhoidectomy</option>
+                        <option value="Kidney">Kidney</option>
+                        <option value="Cataract">Cataract</option>
+                        <option value="Delivery">Delivery</option>
+                        <option value="Liver">Liver</option>
+                        <option value="Cancer">Cancer</option>
+                        <option value="Lungs">Lungs</option>
+                        <option value="Brain">Brain</option>
+                        <option value="Prosthetics">Prosthetics</option>
+                        <option value="Heart">Heart</option>
+                        <option value="Stones">Stones</option>
+                        <option value="ALS">ALS</option>
+                    </select>
+                </div>
+
+                <div class="form-row mb-4">
+                    <div class="col">
+                        <input type="text" id="reasontype" class="form-control" placeholder="reason type" name="reason_type">
+                    </div>
+
+                    <div class="col">
+                        <input type="month" id="lname" class="form-control" placeholder="Year" name="diagnosed_year">
+                    </div>
+                </div>
+
+                <input type="hidden" name="hospital_id" value="{{ data["hospital_id"] }}">
+
+                <center>
+                    <button class="btn btn-lg btn-danger" type="submit">Submit Form</button>
+                </center>
+
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

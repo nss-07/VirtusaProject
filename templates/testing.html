@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Patient ID</th>
+        <th scope="col">Admit Time</th>
+        <th scope="col">Admit Reason</th>
+        <th scope="col">Current Charges</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for current in data["current"] %}
+    <tr>
+        <th scope="row">{{ current.snoid }}  </th>
+{#        <td><%= current.patname %></td>#}
+{#        <td><%= current.patid %></td>#}
+{#        <td><%= current.admttime %></td>#}
+{#        <td><%= current.admtres %></td>#}
+{#        <td><%= current.currcharge %></td>#}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

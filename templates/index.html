@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuralHack</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
+    </script>
+
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body>
+    <!--NavBar-->
+    <nav class="navbar navbar-expand-lg navbar-dark unique-color-dark">
+        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='img/logo.png')}}"
+                height="50px" width="140px" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+            <button class="btn btn-sm btn-danger" type="button">Login</button>
+        </div>
+    </nav>
+    <!--Navbar Done-->
+
+    <section style="margin-top: 1rem;">
+        <div class="row">
+
+            <div class="col-md-6 col-xs-12">
+                <div class="container d-flex justify-content-center">
+                    <img src="{{ url_for('static', filename='img/sec1.jpg')}}" class="img-fluid" />
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12 text-center d-flex justify-content-center"
+                style="height: 100%; margin: auto;">
+                <div class="col-md-8 col-xs-12">
+
+                    <form class="text-center border border-light p-5" method="POST" action="/signin">
+                        <p class="h4 mb-4">Sign in</p>
+
+                        <input type="email" name="email" id="defaultLoginFormEmail" class="form-control mb-4"
+                            placeholder="E-mail">
+
+                        <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4"
+                            placeholder="Password">
+
+                        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="sec2">
+        <div class="container-fluid">
+
+            <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+                </ol>
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="view">
+                            <img class="d-block w-100"
+                                src="{{ url_for('static', filename='/img/h1.jpg')}}" alt="First slide">
+                            <div class="mask rgba-black-light"></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+
+                        <div class="view">
+                            <img class="d-block w-100"
+                                src="{{ url_for('static', filename='/img/h2.jpg')}}" alt="Second slide">
+                            <div class="mask rgba-black-slight"></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+
+                        <div class="view">
+                            <img class="d-block w-100"
+                                src="{{ url_for('static', filename='/img/h3.jpg')}}" alt="Third slide">
+                            <div class="mask rgba-black-slight"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="sec3">
+
+        <div class="row">
+
+            <div class="col-md-6 text-center">
+                <span style="font-size: 3em;">Get a Policy today!</span> <br />
+
+                <span style="font-size: 2rem;">Contact an agent near you.</span> <br /> <br />
+
+                <button class="btn btn-danger">Coming Soon!</button>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <span style="font-size: 3em;">Policy Details</span> <br />
+
+                <ul class="nul">
+                    <li>Detail 1sdkjfbdskjfbsdkfbsd</li>
+                    <li>Detail 1sdjcknsdkcnskdncdjcn</li>
+                    <li>Detail 1sdcn dscjkdsn ckksjd</li>
+                    <li>Detail 1djcndjcnjdcnjdcnjdd</li>
+                    <li>Detail 1 djbdjcbjdbcjdbdjjd</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="page-footer font-small unique-color-dark pt-4" style="margin-top: 1rem;">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-6 mt-md-0 mt-3">
+
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Footer Content</h5>
+                    <p>Here you can use rows and columns to organize your footer content.</p>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Home</a>
+                        </li>
+                        <li>
+                            <a href="#!">Team</a>
+                        </li>
+                        <li>
+                            <a href="#!">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#!">Contact</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="#"> NeuralHack Team 6</a>
+        </div>
+
+    </footer>
+
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

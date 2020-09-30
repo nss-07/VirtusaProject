@@ -1,0 +1,393 @@
+`<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
+    </script>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css')}}">
+
+</head>
+
+<body>
+
+    <!--NavBar-->
+    <nav class="navbar navbar-expand-lg navbar-dark unique-color-dark">
+        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='/img/logo.png')}}" height="50px" width="140px" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+            <button class="btn btn-sm btn-danger" type="button">Login</button>
+        </div>
+    </nav>
+    <!--Navbar Done-->
+
+    <section>
+        <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link tabitem active" id="patient-tab" data-toggle="tab" href="#patient" role="tab"
+                    aria-controls="home" aria-selected="true">Current Patients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tabitem" id="pendingreq-tab" data-toggle="tab" href="#pendingreq" role="tab"
+                    aria-controls="profile" aria-selected="false">Pending Claim Requests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tabitem" id="claimrev-tab" data-toggle="tab" href="#claimrev" role="tab"
+                    aria-controls="contact" aria-selected="false">Review Status of Claim</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tabitem" id="single-tab" data-toggle="tab" href="#single" role="tab"
+                    aria-controls="single" aria-selected="false">Check Claim Status</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tabitem" id="batched-tab" data-toggle="tab" href="#batched" role="tab"
+                    aria-controls="batched" aria-selected="false">Batched</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="patient" role="tabpanel" aria-labelledby="patient-tab">
+                <center>
+                    <form action="/inpatient">
+                        <button type="submit" class="btn btn-danger" >New Patient</button>
+                        <input type="hidden" name="hospital_id" value="{{ data["hospital_id"] }}">
+                    </form>
+
+                </center>
+                <div class="table-responsive text-nowrap">
+
+                    <table class="table table-hover">
+                        <thead class="info-color-dark white-text">
+                            <tr>
+                                <th scope="col">Policy #</th>
+                                <th scope="col">Patient Name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Hospitalized Date</th>
+                                <th scope="col">Admit Reason</th>
+                                <th scope="col">Current Charges</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for current in data["current"] %}
+                            <tr onclick="window.location.href='/outpatient?policy_number={{ current["policy_number"] }}&hospital_id={{ data["hospital_id"] }}'">
+                                <th scope="row">{{ current.policy_number }}  </th>
+                                <td>{{ current.p_fname + " " + current.p_lname}}</td>
+                                <td>{{ current.age }}</td>
+                                <td>{{ current.hospitalized_date }}</td>
+                                <td>{{ current.reason }}</td>
+                                <td>{{ current.total_claim_amount }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pendingreq" role="tabpanel" aria-labelledby="pendingreq-tab">
+                <div class="table-responsive text-nowrap">
+
+                    <table class="table table-hover">
+                        <thead class="info-color-dark white-text">
+                            <tr>
+                                <th scope="col">Policy #</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Patient Name</th>
+                                <th scope="col">Hospitalized Time</th>
+                                <th scope="col">Discharge Time</th>
+                                <th scope="col">Net Charges</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for pending in data["pending"] %}
+                            <tr>
+                                <th scope="row"> {{ pending.policy_number }} </th>
+                                <td>{{ pending.age }}</td>
+                                <td>{{ pending.p_fname + " " + pending.p_lname}}</td>
+                                <td>{{ pending.hospitalized_time }}</td>
+                                <td>{{ pending.discharge_time }}</td>
+                                <td>{{ pending.total_charges }}</td>
+                                <td>{{ pending.claim_status_category_code }}</td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="claimrev" role="tabpanel" aria-labelledby="claimrev-tab">
+                <div class="table-responsive text-nowrap">
+
+                    <table class="table table-hover">
+                        <thead class="info-color-dark white-text">
+                            <tr>
+                                <th scope="col">Policy #</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Patient Name</th>
+                                <th scope="col">Hospitalized Time</th>
+                                <th scope="col">Discharge Time</th>
+                                <th scope="col">Net Charges</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Amount Recorded</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for review in data["review"] %}
+                            <tr>
+                                <th scope="row"> {{ review.policy_number }} </th>
+                                <td>{{ review.age }}</td>
+                                <td>{{ review.p_fname + " " + review.p_lname}}</td>
+                                <td>{{ review.hospitalized_time }}</td>
+                                <td>{{ review.discharge_time }}</td>
+                                <td>{{ review.total_charges }}</td>
+                                <td>{{ review.claim_status_category_code }}</td>
+                                <td>{{ review.recamt }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade justify-content-center d-flex" id="single" role="tabpanel"
+                aria-labelledby="single-tab">
+                <div class="col-md-8 col-lg-6">
+                    <!-- Default form register -->
+                    <form class="text-center border border-light p-5" action="/get-details" method="POST"> 
+
+                        <p class="h4 mb-4">Enter Details</p>
+
+                        <div class="form-row mb-4">
+                            <div class="col">
+
+                                <input type="text" id="FirstName" name="firstname" class="form-control"
+                                    placeholder="First name">
+                            </div>
+                            <div class="col">
+
+                                <input type="text" id="LastName" name="lastname" class="form-control"
+                                    placeholder="Last name">
+                            </div>
+                        </div>
+
+                        <div class="form-row mb-4">
+                            <div class="col">
+
+                                <input type="text" id="memberid" name="id" class="form-control" placeholder="Member ID">
+                            </div>
+                            <div class="col">
+
+                                <input placeholder="Date of Birth" name="dob" class="form-control" type="text"
+                                    onfocus="(this.type='date')" onblur="(this.type='text')" id="dob" />
+                            </div>
+
+                            <div class="col">
+
+                                <input placeholder="Gender" name="gender" class="form-control" type="text"
+                                    onfocus="(this.type='text')" onblur="(this.type='text')" id="gender" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-row mb-4">
+                            <div class="col">
+
+                                <input placeholder="Service Start Date" name="startdate" class="form-control"
+                                    type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="ssd" />
+                            </div>
+                            <div class="col">
+
+                                <input placeholder="Service End Date" name="enddate" class="form-control" type="text"
+                                    onfocus="(this.type='date')" onblur="(this.type='text')" id="sed" />
+                            </div>
+                        </div>
+
+                        <small style="float: left;">
+                            Provider ID
+                        </small>
+                        <input type="text" id="providerid" name="provid" class="form-control mb-4"
+                            placeholder="Provider ID" value="Default" readonly>
+
+                        <small style="float: left;">
+                            Provider Name
+                        </small>
+                        <input type="text" id="providername" name="provname" class="form-control"
+                            placeholder="Provider Name" value="Default" readonly>
+
+                       
+                    <button class="btn btn-info my-4 btn-block" data-toggle="modal"
+                    data-target="#modalDetailForm" >Submit</button>
+
+                    </form>
+
+
+
+
+                </div>
+
+
+
+                <!--Modal-->
+                <div class="modal fade" id="modalDetailForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Details</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-name" class="form-control validate" name="name">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-name">Insured</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="date" id="orangeForm-email" class="form-control validate" name="dob">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-email">Date of
+                                        Birth</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-gender" class="form-control validate"
+                                        name="gender">
+                                    <label data-error="wrong" data-success="right"
+                                        for="orangeForm-gender">Gender</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-memid" class="form-control validate" name="memid">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-memid">Member
+                                        ID</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-servpd" class="form-control validate"
+                                        name="servpd">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-servpd">Service
+                                        Provider</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-status" class="form-control validate"
+                                        name="status">
+                                    <label data-error="wrong" data-success="right"
+                                        for="orangeForm-status">Status</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-sied" class="form-control validate" name="sied">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-sied">Status
+                                        Information Effective Date</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-totclamt" class="form-control validate"
+                                        name="totclamt">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-totclamt">Total Claim
+                                        Charge Amount</label>
+                                </div>
+
+
+                                <div class="md-form mb-4">
+                                    <input type="text" id="orangeForm-clpayamt" class="form-control validate"
+                                        name="clpayamt">
+                                    <label data-error="wrong" data-success="right" for="orangeForm-clpayamt">Claim
+                                        Payment Amount</label>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button class="btn btn-deep-orange">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="tab-pane fade" id="batched" role="tabpanel" aria-labelledby="batched-tab">
+                <br />
+                <div class="text-center justify-content-center">
+
+                    <div class="bb8">
+                        <div class="head"></div>
+                        <div class="body"></div>
+                    </div>
+                    <br />
+
+                    <h1> Coming Soon!</h1>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script src="{{ url_for('static', filename='/js/dashboard.js')}}"></script>
+
+    <script>
+        function getModalData(){
+            fetch()
+        }
+    </script>
+</body>
+
+</html>`
